@@ -127,8 +127,16 @@ def subset_xy(X, y, indices):
 
     return X_sub, y_sub
 
-# Step 13 - ols_fit (not yet solved)
-# TODO: implement
+# Step 13 - ols_fit
+def ols_fit(X, y):
+    
+    # Form the Gram matrix
+    A = X.T @ X
+
+    # Right hand side
+    b = X.T @ y
+
+    return np.linalg.solve(A, b)
 
 # Step 14 - ols_predict (not yet solved)
 # TODO: implement
