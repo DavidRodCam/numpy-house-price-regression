@@ -205,8 +205,21 @@ def prepare_cleaned_features(X, iqr_k=1.5):
 
     return clip_columns(X_imp, lower, upper)
 
-# Step 20 - assemble_feature_matrix (not yet solved)
-# TODO: implement
+# Step 20 - assemble_feature_matrix
+import numpy as np
+
+def assemble_feature_matrix(X_num, ratio_num_idx, ratio_den_idx, cat_labels=None):
+    
+    slice_num = X_num[:, ratio_num_idx]
+    slice_den = X_num[:, ratio_den_idx]
+
+    ratio = make_ratio_feature(slice_num, slice_den)
+    result = append_column(X_num, ratio)
+
+    if cat_labels is not None:
+        result = np.hstack([result, one_hot_encode(cat_labels)])
+
+    return result
 
 # Step 21 - make_train_val_test (not yet solved)
 # TODO: implement
